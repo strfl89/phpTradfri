@@ -38,3 +38,5 @@ define('TYPE_MOTION_SENSOR', 4);
 define('STDIN', 0);
 define('STDOUT', 1);
 define('STDERR', 2);
+
+?>
