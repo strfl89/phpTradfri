@@ -7,11 +7,11 @@ class tradfri
 	{
 
 	//IP Address of Trådfri Gateway
-	const TRADFRIIP = '10.163.1.32';
+	const TRADFRIIP = '<ipAddress>';
 	//API User Trådfri Gateway
-	const USER = 'webex-bot';
+	const USER = 'User';
 	//API Key for User
-	const SECRETKEY = 'zhLyVdO1hPokP4Tw';
+	const SECRETKEY = 'Key';
 
 	function query($path){
 
