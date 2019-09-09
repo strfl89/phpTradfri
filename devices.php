@@ -84,7 +84,7 @@ class tradfridevices extends tradfri
 		$Ids = $this->getIds();
 		foreach($Ids as $device){
 			$details = $this->getDetails("15001/$device");
-			if($details[TYPE] == 0){
+			if($details[TYPE] == TYPE_REMOTE_CONTROL || $details[TYPE] == TYPE_MOTION_SENSOR){
 				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "battery" => $details['3']['9']);
 				}
 			}
