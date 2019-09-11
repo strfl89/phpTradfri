@@ -10,9 +10,9 @@ class tradfri
 
 	function __construct($user, $secret, $gwip){
 
-			$gateway['user'] = $user;
-			$gateway['secretkey'] = $secret;
-			$gateway['ip'] = $gwip;
+			$this->gateway['user'] = $user;
+			$this->gateway['secretkey'] = $secret;
+			$this->gateway['ip'] = $gwip;
 
 		}
 
