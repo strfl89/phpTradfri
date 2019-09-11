@@ -25,4 +25,8 @@ This project is a set of PHP Classes working with [libcoap](https://github.com/o
 2. Place the scripts in a web server directory accessible to web browsers. Ensure executing processes on the command line is allowed in your PHP installation.
 3. Provide a configuration file with IP address of the gateway, identity and key ("username and password") to use when communicating with the gateway.
 ## Configuration
-Configure Tradfri Gateway IP, User, Key in general.php
+While creating an object in your code, you must provide the parameters for user, secretkey and IP Address
+Example:
+```
+$groups = new tradfrigroups("<user>", "<secret>", "<ip>");
+```
