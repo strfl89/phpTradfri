@@ -1,6 +1,5 @@
 <?php
 
-//require_once('ikea-smart-home.config.php');
 require_once('defines.php');
 
 class tradfri
