@@ -6,16 +6,19 @@ require_once('define.php');
 class tradfri
 	{
 
-	//IP Address of Trådfri Gateway
-	const TRADFRIIP = '<IP-Address>';
-	//API User Trådfri Gateway
-	const USER = '<User>';
-	//API Key for User
-	const SECRETKEY = '<Key>';
+	privat $gateway;
+
+	function __construct($user, $secret, $gwip){
+
+			$gateway['user'] = $user;
+			$gateway['secretkey'] = $secret;
+			$gateway['ip'] = $gwip;
+
+		}
 
 	function query($path){
 
-		$cmd = "coap-client -m get -u '".self::USER."' -k '".self::SECRETKEY."' 'coaps://".self::TRADFRIIP.":5684/$path'";
+		$cmd = "coap-client -m get -u '{$gateway['user']}' -k '{$gateway['secretkey']}' 'coaps://{$gateway['ip']}:5684/{$path}'";
 		$process = proc_open($cmd, [STDOUT => ['pipe', 'w'], STDERR => ['pipe', 'w']], $output);
 
 		//read the outputs
@@ -36,7 +39,7 @@ class tradfri
 		}
 
 	function action($method, $payload, $path){
-		$cmd = "coap-client -m {$method} -u '".self::USER."' -k '".self::SECRETKEY."' -e '{$payload}' 'coaps://".self::TRADFRIIP.":5684/$path'";
+		$cmd = "coap-client -m {$method} -u '{$gateway['user']}' -k '{$gateway['secretkey']}' -e '{$payload}' 'coaps://{$gateway['ip']}:5684/{$path}'";
 		exec($cmd);
 
 		}
