@@ -1,12 +1,12 @@
 <?php
 
 //require_once('ikea-smart-home.config.php');
-require_once('define.php');
+require_once('defines.php');
 
 class tradfri
 	{
 
-	privat $gateway;
+	private $gateway;
 
 	function __construct($user, $secret, $gwip){
 
@@ -18,7 +18,7 @@ class tradfri
 
 	function query($path){
 
-		$cmd = "coap-client -m get -u '{$gateway['user']}' -k '{$gateway['secretkey']}' 'coaps://{$gateway['ip']}:5684/{$path}'";
+		$cmd = "coap-client -m get -u '{$this->gateway['user']}' -k '{$this->gateway['secretkey']}' 'coaps://{$this->gateway['ip']}:5684/{$path}'";
 		$process = proc_open($cmd, [STDOUT => ['pipe', 'w'], STDERR => ['pipe', 'w']], $output);
 
 		//read the outputs
@@ -39,7 +39,7 @@ class tradfri
 		}
 
 	function action($method, $payload, $path){
-		$cmd = "coap-client -m {$method} -u '{$gateway['user']}' -k '{$gateway['secretkey']}' -e '{$payload}' 'coaps://{$gateway['ip']}:5684/{$path}'";
+		$cmd = "coap-client -m {$method} -u '{$this->gateway['user']}' -k '{$this->gateway['secretkey']}' -e '{$payload}' 'coaps://{$this->gateway['ip']}:5684/{$path}'";
 		exec($cmd);
 
 		}
