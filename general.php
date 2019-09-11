@@ -1,21 +1,23 @@
 <?php
 
-//require_once('ikea-smart-home.config.php');
-require_once('define.php');
+require_once('defines.php');
 
 class tradfri
 	{
 
-	//IP Address of Trådfri Gateway
-	const TRADFRIIP = '<IP-Address>';
-	//API User Trådfri Gateway
-	const USER = '<User>';
-	//API Key for User
-	const SECRETKEY = '<Key>';
+	private $gateway;
+
+	function __construct($user, $secret, $gwip){
+
+			$this->gateway['user'] = $user;
+			$this->gateway['secretkey'] = $secret;
+			$this->gateway['ip'] = $gwip;
+
+		}
 
 	function query($path){
 
-		$cmd = "coap-client -m get -u '".self::USER."' -k '".self::SECRETKEY."' 'coaps://".self::TRADFRIIP.":5684/$path'";
+		$cmd = "coap-client -m get -u '{$this->gateway['user']}' -k '{$this->gateway['secretkey']}' 'coaps://{$this->gateway['ip']}:5684/{$path}'";
 		$process = proc_open($cmd, [STDOUT => ['pipe', 'w'], STDERR => ['pipe', 'w']], $output);
 
 		//read the outputs
@@ -36,7 +38,7 @@ class tradfri
 		}
 
 	function action($method, $payload, $path){
-		$cmd = "coap-client -m {$method} -u '".self::USER."' -k '".self::SECRETKEY."' -e '{$payload}' 'coaps://".self::TRADFRIIP.":5684/$path'";
+		$cmd = "coap-client -m {$method} -u '{$this->gateway['user']}' -k '{$this->gateway['secretkey']}' -e '{$payload}' 'coaps://{$this->gateway['ip']}:5684/{$path}'";
 		exec($cmd);
 
 		}
