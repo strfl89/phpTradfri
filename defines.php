@@ -21,5 +21,10 @@ define('TYPE_LIGHT', 2);		//5750 = 2 => All lightning Devices (Driver, Lamps, ..
 define('TYPE_MOTION_SENSOR', 4);	//5750 = 4 => Motion Sensor
 define('GATEWAY', 15011);
 define('GATEWAY_NTP', 9023);
+define('GATEWAY_FIRMWARE', 9029);
+define('GATEWAY_ALEXA_STATUS', 9093)
+define('GATEWAY_GOOGLE_STATUS', 9105);
+define('GATEWAY_TIME_UNIX', 9059);
+define('GATEWAY_SETUP_TIME', 9069)
 
 ?>
