@@ -38,7 +38,11 @@ class tradfri
 		}
 
 	function action($method, $payload, $path){
-		$cmd = "coap-client -m {$method} -u '{$this->gateway['user']}' -k '{$this->gateway['secretkey']}' -e '{$payload}' 'coaps://{$this->gateway['ip']}:5684/{$path}'";
+		if($payload != "")
+			$cmd = "coap-client -m {$method} -u '{$this->gateway['user']}' -k '{$this->gateway['secretkey']}' -e '{$payload}' 'coaps://{$this->gateway['ip']}:5684/{$path}'";
+		else
+			$cmd = "coap-client -m {$method} -u '{$this->gateway['user']}' -k '{$this->gateway['secretkey']}' 'coaps://{$this->gateway['ip']}:5684/{$path}'";
+
 		exec($cmd);
 
 		}
