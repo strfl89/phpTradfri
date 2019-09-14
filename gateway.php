@@ -21,6 +21,8 @@ class tradfrigateway extends tradfri
 			$details = $this->getDetails(GATEWAY."/15012");
 
 			$output = array('setup' => $details[GATEWAY_SETUP_TIME], 'ntp' => $details['GATEWAY_NTP'], 'time' => $details[GATEWAY_TIME_UNIX], 'firmware' => $details[GATEWAY_FIRMWARE], 'alexa' => $details[GATEWAY_ALEXA_STATUS], 'google' => $details[GATEWAY_GOOGLE_STATUS]);
+
+			return $output;
 		}
 
 	}

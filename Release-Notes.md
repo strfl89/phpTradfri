@@ -1,4 +1,6 @@
 # phpTradfri - Version History
+## Version 2.1.1
+* Fix missing return in Function statusgateway()
 ## Version 2.1
 * Add Subclass for Trådfri Gateway
 * defines.php
