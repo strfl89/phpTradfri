@@ -1,7 +1,9 @@
 # phpTradfri - Version History
-## Version 2.1.1
+## Version 2.2 - 16th Sep 2019
++ getDimmer() and setDimmer() added to devices.php
+## Version 2.1.1 - 14th Sep 2019
 * Fix missing return in Function statusgateway()
-## Version 2.1
+## Version 2.1 - 14th Sep 2019
 * Add Subclass for Trådfri Gateway
 * defines.php
   + defines for gateway
@@ -17,9 +19,9 @@
 * general.php
   * Move from Constants to Parameters for Gateway Config
   * to initialize new object parameters User, Secret and Gateway IP must enterd. Example:
-```
-$groups = new tradfrigroups("<user>", "<secret>", "<ip>");
-```
+    ```
+    $groups = new tradfrigroups("<user>", "<secret>", "<ip>");
+    ```
   * cleaning up file
 * Update ReadMe File
 ## Version 1.1 - 09th Sep 2019
