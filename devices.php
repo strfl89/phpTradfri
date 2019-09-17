@@ -5,6 +5,14 @@ require_once('general.php');
 class tradfridevices extends tradfri
 	{
 
+	function getDimmer($Id){
+
+		$dimid = $this->getDetails("15001/$Id");
+
+		return $dimid['3311']['0'][DIMMER];
+
+		}
+
 	function getIds(){
 
 		return explode(",", trim(str_replace(['[',']'], "" ,strstr($this->query("15001"), '[65'))));
@@ -58,7 +66,7 @@ class tradfridevices extends tradfri
 			}
 
 		else
-			return "Gerät kann nicht ausgeschalet werden, da es keine Lampe ist";
+			return $this->getName("15001/$device")." konnte nicht ausgeschaltet werden, da es keine Lampe ist";
 
 		}
 
@@ -75,7 +83,28 @@ class tradfridevices extends tradfri
 			}
 
 		else
-			return "Gerät konnte nicht eingeschaltet werden, da es keine Lampe ist";
+			return $this->getName("15001/$device")." konnte nicht eingeschaltet werden, da es keine Lampe ist";
+
+		}
+
+	function setDimmer($path, $dimmer, $transition = NULL){
+
+		if($this->getTypeId($path) == TYPE_LIGHT){
+
+			$dim = round(254 * (int)str_replace("%", "", trim($dimmer)) / 100, 0);
+
+			$payload = is_null($transition) ? '{ "3311": [{ "5851" : '.$dim.' }] }" : "{ "3311": [{ "5851": '.$dim.', "5712": '.$transition.' }] }';
+			$this->action("put", $payload, "15001/$path");
+
+			if($this->getDimmer($path) == $dim)
+				return $this->getName("15001/$path")." wurde auf {$dimmer} gedimmt";
+			else
+				return $this->getName("15001/$path")." konnte nicht auf {$dimmer} gedimmt werden";
+
+			}
+
+		else
+			return $this->getName("15001/$device")." konnte nicht gedimmt werden, da es keine Lampe ist";
 
 		}
 

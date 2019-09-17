@@ -2,16 +2,15 @@
 
 require_once('defines.php');
 
-class tradfri
-	{
+class tradfri {
 
 	private $gateway;
 
 	function __construct($user, $secret, $gwip){
 
-			$this->gateway['user'] = $user;
-			$this->gateway['secretkey'] = $secret;
-			$this->gateway['ip'] = $gwip;
+		$this->gateway['user'] = $user;
+		$this->gateway['secretkey'] = $secret;
+		$this->gateway['ip'] = $gwip;
 
 		}
 
@@ -67,7 +66,6 @@ class tradfri
 
 		}
 
-	}
-//End of Class tradfri
+	} //End of Class tradfri
 
 ?>
