@@ -18,7 +18,7 @@ define('TRANSITION', 5712);				//Fade Time
 define('TYPE', 5750);
 define('TYPE_REMOTE_CONTROL', 0);		//5750 = 0 => Default Remote Control
 define('TYPE_LIGHT', 2);				//5750 = 2 => All lightning Devices (Driver, Lamps, ...)
-define('TYPE_CONTROL_OUTLET', 3)		//5750 = 3 => Control Outlet for power Switching
+define('TYPE_CONTROL_OUTLET', 3);		//5750 = 3 => Control Outlet for power Switching
 define('TYPE_MOTION_SENSOR', 4);		//5750 = 4 => Motion Sensor
 define('GATEWAY', 15011);
 define('GATEWAY_NTP', 9023);
