@@ -13,6 +13,12 @@ class tradfri {
 		$this->gateway['ip'] = $gwip;
 
 		}
+		
+	function getGatewayData(){
+
+		return $this->gateway;
+
+ 		}
 
 	function query($path){
 
