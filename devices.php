@@ -108,9 +108,27 @@ class tradfridevices extends tradfri
 
 		}
 
+	function statuscontroloutlet(){
+
+		$Ids = $this->getIds();
+		sort($Ids, SORT_NUMERIC);
+		
+		foreach($Ids as $device){
+			$details = $this->getDetails("15001/$device");
+			if($details[TYPE] == TYPE_CONTROL_OUTLET){
+				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "firmware" => $details['3']['3'], "lastseen" => date('H:i:s d.m.Y', $details[LAST_SEEN]), "lastseenunix" => $details[LAST_SEEN], "power" => $details['3312']['0'][ONOFF]);
+				}
+			}
+
+		return $output;
+
+		}
+
 	function statusremotecontrol(){
 
 		$Ids = $this->getIds();
+		sort($Ids, SORT_NUMERIC);
+
 		foreach($Ids as $device){
 			$details = $this->getDetails("15001/$device");
 			if($details[TYPE] == TYPE_REMOTE_CONTROL || $details[TYPE] == TYPE_MOTION_SENSOR){
