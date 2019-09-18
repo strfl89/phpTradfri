@@ -114,7 +114,7 @@ class tradfridevices extends tradfri
 		foreach($Ids as $device){
 			$details = $this->getDetails("15001/$device");
 			if($details[TYPE] == TYPE_REMOTE_CONTROL || $details[TYPE] == TYPE_MOTION_SENSOR){
-				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "battery" => $details['3']['9'], "firmware" => $details['3']['3']);
+				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "battery" => $details['3']['9'], "firmware" => $details['3']['3'], "lastseen" => date('H:i:s d.m.Y', $details[LAST_SEEN]), "lastseenunix" => $details[LAST_SEEN]);
 				}
 			}
 
@@ -140,7 +140,7 @@ class tradfridevices extends tradfri
 				//Set Dimmer to the INT Value in %
 				$details[LIGHT]['0'][DIMMER] = round($details[LIGHT]['0'][DIMMER] * 100 / 255);
 
-				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "power" => $details[LIGHT]['0'][ONOFF], "dimmer" => $details[LIGHT]['0'][DIMMER], "colorhex" => $colorhex, "colorx" => $colorx, "colory" => $colory, "colortemp" => $colortemp, "transition" => $transition);
+				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "power" => $details[LIGHT]['0'][ONOFF], "dimmer" => $details[LIGHT]['0'][DIMMER], "colorhex" => $colorhex, "colorx" => $colorx, "colory" => $colory, "colortemp" => $colortemp, "transition" => $transition, "firmware" => $details['3']['3'], "lastseen" => date('H:i:s d.m.Y', $details[LAST_SEEN]), "lastseenunix" => $details[LAST_SEEN]);
 
 				//Clean up
 				unset($colorhex, $colorx, $colory, $colortemp, $transition);
