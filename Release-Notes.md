@@ -3,6 +3,8 @@
 * devices.php
   + add Last Seen Information for Lamps and Remote Controls
   + add statuscontroloutlet()
+* gateway.php
+  * bugfixing ntp in status
 ## Version 2.2 - 16th Sep 2019
 + getDimmer() and setDimmer() added to devices.php
 ## Version 2.1.1 - 14th Sep 2019
