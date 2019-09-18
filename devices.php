@@ -93,7 +93,7 @@ class tradfridevices extends tradfri
 
 			$dim = round(254 * (int)str_replace("%", "", trim($dimmer)) / 100, 0);
 
-			$payload = is_null($transition) ? '{ "3311": [{ "5851" : '.$dim.' }] }" : "{ "3311": [{ "5851": '.$dim.', "5712": '.$transition.' }] }';
+			$payload = is_null($transition) ? '{ "3311": [{ "5851" : '.$dim.' }] }' : '{ "3311": [{ "5851": '.$dim.', "5712": '.$transition.' }] }';
 			$this->action("put", $payload, "15001/$path");
 
 			if($this->getDimmer($path) == $dim)
