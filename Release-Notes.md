@@ -3,6 +3,7 @@
 * devices.php
   + add Last Seen Information for Lamps and Remote Controls
   + add statuscontroloutlet()
+  + extend poweron() and poweroff() for control outlets
 * gateway.php
   * bugfixing ntp in status
 ## Version 2.2 - 16th Sep 2019

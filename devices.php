@@ -55,8 +55,20 @@ class tradfridevices extends tradfri
 
 	function poweroff($path){
 
-		if($this->getTypeId($path) == TYPE_LIGHT){
-			$payload = '{ "3311": [{ "5850": 0 }] }';
+		switch($this->getTypeId($path)){
+			case TYPE_LIGHT:
+				$payload = '{ "3311": [{ "5850": 0 }] }';
+				break;
+
+  			case TYPE_CONTROL_OUTLET:
+				$payload = '{ "3312“: [{ "5850": 0 }] }';
+				break;
+
+			default:
+				$payload = NULL;
+			}
+
+		if (!is_null($payload)){
 			$this->action("put", $payload, "15001/$path");
 
 			if($this->getPowerStatus($path) == 0)
@@ -72,8 +84,21 @@ class tradfridevices extends tradfri
 
 	function poweron($path){
 
-		if($this->getTypeId($path) == TYPE_LIGHT){
-			$payload = '{ "3311": [{ "5850": 1 }] }';
+		switch($this->getTypeId($path)){
+			case TYPE_LIGHT:
+				$payload = '{ "3311": [{ "5850": 1 }] }';
+				break;
+
+  			case TYPE_CONTROL_OUTLET:
+				$payload = '{ "3312“: [{ "5850": 1 }] }';
+				break;
+
+			default:
+				$payload = NULL;
+			}
+
+		if (!is_null($payload)){
+
 			$this->action("put", $payload, "15001/$path");
 
 			if($this->getPowerStatus($path) == 1)
