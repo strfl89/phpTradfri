@@ -49,7 +49,19 @@ class tradfridevices extends tradfri
 
 		$psid = $this->getDetails("15001/$Id");
 
-		return $psid['3311']['0'][ONOFF];
+		switch ($psid[TYPE]) {
+			case TYPE_LIGHT:
+				return $psid['3311']['0'][ONOFF];
+				break;
+
+			case TYPE_CONTROL_OUTLET:
+				return $psid['3312']['0'][ONOFF];
+				break;
+			
+			default:
+				return NULL;
+				break;
+			}
 
 		}
 
