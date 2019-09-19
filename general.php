@@ -48,7 +48,7 @@ class tradfri {
 		else
 			$cmd = "coap-client -m {$method} -u '{$this->gateway['user']}' -k '{$this->gateway['secretkey']}' 'coaps://{$this->gateway['ip']}:5684/{$path}'";
 
-		exec($cmd);
+		return exec($cmd);
 
 		}
 

@@ -7,6 +7,8 @@
   + extend getPowerStatus() for control outlets
 * gateway.php
   * bugfixing ntp in status
+* general.php
+  + adding return for action()
 ## Version 2.2 - 16th Sep 2019
 + getDimmer() and setDimmer() added to devices.php
 ## Version 2.1.1 - 14th Sep 2019
