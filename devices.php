@@ -73,7 +73,7 @@ class tradfridevices extends tradfri
 				break;
 
   			case TYPE_CONTROL_OUTLET:
-				$payload = '{ "3312“: [{ "5850": 0 }] }';
+				$payload = '{ "3312": [{ "5850": 0 }] }';
 				break;
 
 			default:
@@ -102,7 +102,7 @@ class tradfridevices extends tradfri
 				break;
 
   			case TYPE_CONTROL_OUTLET:
-				$payload = '{ "3312“: [{ "5850": 1 }] }';
+				$payload = '{ "3312": [{ "5850": 1 }] }';
 				break;
 
 			default:
