@@ -5,6 +5,14 @@ require_once('general.php');
 class tradfrigroups extends tradfri
 	{
 
+	function getDimmer($Id){
+
+		$dimid = $this->getDetails("15004/$Id");
+
+		return $dimid[DIMMER];
+
+		}
+
 	function getIds(){
 
 		return explode(",", trim(str_replace(['[',']'], "" ,strstr($this->query("15004"), '[13'))));
@@ -60,6 +68,20 @@ class tradfrigroups extends tradfri
 
 		else
 			return $this->getName("15004/$path")." konnte nicht eingeschaltet werden";
+
+		}
+
+	function setDimmer($path, $dimmer){
+
+		$dim = round(254 * (int)str_replace("%", "", trim($dimmer)) / 100, 0);
+
+		$payload = '{ "'.DIMMER.'": '.$dim.' }';
+		$this->action("put", $payload, "15004/$path");
+
+		if($this->getDimmer($path) == $dim)
+			return $this->getName("15004/$path")." wurde auf {$dimmer} gedimmt.";
+		else
+			return $this->getName("15004/$path")." konnte nicht auf {$dimmer} gedimmt werden.";
 
 		}
 

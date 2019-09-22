@@ -1,4 +1,17 @@
 # phpTradfri - Version History
+## Version 2.3 - 22nd Sep 2019
+* devices.php
+  + add Last Seen Information for Lamps and Remote Controls
+  + add statuscontroloutlet()
+  + add functions for dimming lamps
+  + extend poweron() and poweroff() for control outlets
+  + extend getPowerStatus() for control outlets
+* gateway.php
+  * bugfixing ntp in status
+* general.php
+  + adding return for action()
+* groups.php
+  + add functions for dimming lamps
 ## Version 2.2 - 16th Sep 2019
 + getDimmer() and setDimmer() added to devices.php
 ## Version 2.1.1 - 14th Sep 2019

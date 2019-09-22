@@ -49,14 +49,38 @@ class tradfridevices extends tradfri
 
 		$psid = $this->getDetails("15001/$Id");
 
-		return $psid['3311']['0'][ONOFF];
+		switch ($psid[TYPE]) {
+			case TYPE_LIGHT:
+				return $psid['3311']['0'][ONOFF];
+				break;
+
+			case TYPE_CONTROL_OUTLET:
+				return $psid['3312']['0'][ONOFF];
+				break;
+			
+			default:
+				return NULL;
+				break;
+			}
 
 		}
 
 	function poweroff($path){
 
-		if($this->getTypeId($path) == TYPE_LIGHT){
-			$payload = '{ "3311": [{ "5850": 0 }] }';
+		switch($this->getTypeId($path)){
+			case TYPE_LIGHT:
+				$payload = '{ "3311": [{ "5850": 0 }] }';
+				break;
+
+  			case TYPE_CONTROL_OUTLET:
+				$payload = '{ "3312": [{ "5850": 0 }] }';
+				break;
+
+			default:
+				$payload = NULL;
+			}
+
+		if (!is_null($payload)){
 			$this->action("put", $payload, "15001/$path");
 
 			if($this->getPowerStatus($path) == 0)
@@ -72,8 +96,21 @@ class tradfridevices extends tradfri
 
 	function poweron($path){
 
-		if($this->getTypeId($path) == TYPE_LIGHT){
-			$payload = '{ "3311": [{ "5850": 1 }] }';
+		switch($this->getTypeId($path)){
+			case TYPE_LIGHT:
+				$payload = '{ "3311": [{ "5850": 1 }] }';
+				break;
+
+  			case TYPE_CONTROL_OUTLET:
+				$payload = '{ "3312": [{ "5850": 1 }] }';
+				break;
+
+			default:
+				$payload = NULL;
+			}
+
+		if (!is_null($payload)){
+
 			$this->action("put", $payload, "15001/$path");
 
 			if($this->getPowerStatus($path) == 1)
@@ -108,13 +145,31 @@ class tradfridevices extends tradfri
 
 		}
 
+	function statuscontroloutlet(){
+
+		$Ids = $this->getIds();
+		sort($Ids, SORT_NUMERIC);
+		
+		foreach($Ids as $device){
+			$details = $this->getDetails("15001/$device");
+			if($details[TYPE] == TYPE_CONTROL_OUTLET){
+				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "firmware" => $details['3']['3'], "lastseen" => date('H:i:s d.m.Y', $details[LAST_SEEN]), "lastseenunix" => $details[LAST_SEEN], "power" => $details['3312']['0'][ONOFF]);
+				}
+			}
+
+		return $output;
+
+		}
+
 	function statusremotecontrol(){
 
 		$Ids = $this->getIds();
+		sort($Ids, SORT_NUMERIC);
+
 		foreach($Ids as $device){
 			$details = $this->getDetails("15001/$device");
 			if($details[TYPE] == TYPE_REMOTE_CONTROL || $details[TYPE] == TYPE_MOTION_SENSOR){
-				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "battery" => $details['3']['9'], "firmware" => $details['3']['3']);
+				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "battery" => $details['3']['9'], "firmware" => $details['3']['3'], "lastseen" => date('H:i:s d.m.Y', $details[LAST_SEEN]), "lastseenunix" => $details[LAST_SEEN]);
 				}
 			}
 
@@ -140,7 +195,7 @@ class tradfridevices extends tradfri
 				//Set Dimmer to the INT Value in %
 				$details[LIGHT]['0'][DIMMER] = round($details[LIGHT]['0'][DIMMER] * 100 / 255);
 
-				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "power" => $details[LIGHT]['0'][ONOFF], "dimmer" => $details[LIGHT]['0'][DIMMER], "colorhex" => $colorhex, "colorx" => $colorx, "colory" => $colory, "colortemp" => $colortemp, "transition" => $transition);
+				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "power" => $details[LIGHT]['0'][ONOFF], "dimmer" => $details[LIGHT]['0'][DIMMER], "colorhex" => $colorhex, "colorx" => $colorx, "colory" => $colory, "colortemp" => $colortemp, "transition" => $transition, "firmware" => $details['3']['3'], "lastseen" => date('H:i:s d.m.Y', $details[LAST_SEEN]), "lastseenunix" => $details[LAST_SEEN]);
 
 				//Clean up
 				unset($colorhex, $colorx, $colory, $colortemp, $transition);
