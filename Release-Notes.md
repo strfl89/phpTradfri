@@ -1,4 +1,7 @@
 # phpTradfri - Version History
+## Version 2.4 - 25th Sep 2019
+* groups.php
+  + add getMembers() Function
 ## Version 2.3 - 22nd Sep 2019
 * devices.php
   + add Last Seen Information for Lamps and Remote Controls
