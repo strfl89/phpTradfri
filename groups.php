@@ -37,6 +37,14 @@ class tradfrigroups extends tradfri
 
 		}
 
+	function getMembers($Id){
+
+		$members = $this->getDetails("15004/$Id");
+		
+		return $members['9018']['15002']['9003'];
+
+		}
+
 	function getPowerStatus($Id){
 
 		$psid = $this->getDetails("15004/$Id");
