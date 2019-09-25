@@ -78,10 +78,10 @@ class tradfrigroups extends tradfri
 		$payload = '{ "'.DIMMER.'": '.$dim.' }';
 		$this->action("put", $payload, "15004/$path");
 
-		if($this->getDimmer($path) == $dim)
+		//if($this->getDimmer($path) == $dim)
 			return $this->getName("15004/$path")." wurde auf {$dimmer} gedimmt.";
-		else
-			return $this->getName("15004/$path")." konnte nicht auf {$dimmer} gedimmt werden.";
+		/*else
+			return $this->getName("15004/$path")." konnte nicht auf {$dimmer} gedimmt werden.";*/
 
 		}
 
