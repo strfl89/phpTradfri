@@ -20,6 +20,7 @@ define('TYPE_REMOTE_CONTROL', 0);		//5750 = 0 => Default Remote Control
 define('TYPE_LIGHT', 2);				//5750 = 2 => All lightning Devices (Driver, Lamps, ...)
 define('TYPE_CONTROL_OUTLET', 3);		//5750 = 3 => Control Outlet for power Switching
 define('TYPE_MOTION_SENSOR', 4);		//5750 = 4 => Motion Sensor
+define('TYPE_SYMFONISK_CONTROLLER', 8)
 define('GATEWAY', 15011);
 define('GATEWAY_NTP', 9023);
 define('GATEWAY_FIRMWARE', 9029);

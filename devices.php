@@ -168,7 +168,7 @@ class tradfridevices extends tradfri
 
 		foreach($Ids as $device){
 			$details = $this->getDetails("15001/$device");
-			if($details[TYPE] == TYPE_REMOTE_CONTROL || $details[TYPE] == TYPE_MOTION_SENSOR){
+			if($details[TYPE] == TYPE_REMOTE_CONTROL || $details[TYPE] == TYPE_MOTION_SENSOR || $details[TYPE] == TYPE_SYMFONISK_CONTROLLER){
 				$output[] = array("id" => $device,"name" => $details[NAME], "type" => $details['3']['1'], "battery" => $details['3']['9'], "firmware" => $details['3']['3'], "lastseen" => date('H:i:s d.m.Y', $details[LAST_SEEN]), "lastseenunix" => $details[LAST_SEEN]);
 				}
 			}
