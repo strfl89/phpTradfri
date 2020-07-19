@@ -30,5 +30,14 @@ define('GATEWAY_TIME_UNIX', 9059);
 define('GATEWAY_SETUP_TIME', 9069);
 define('LAST_SEEN', 9020);
 define('TIMERS', 15010);
+define('TIMERS_TYPE', 9040);			//4 = transition | 1 = not home | 2 = on/off
+define('TIMERS_TYPE_NOT_AT_HOME', 1);
+define('TIMERS_TYPE_ONOFF', 2);
+define('TIMERS_TYPE_WAKEUP', 4);
+define('TIMERS_START_ACTION', 9042);
+define('TIMERS_START_HOUR', 9046);
+define('TIMERS_START_MIN', 9047);
+define('TIMERS_END_HOUR', 9048);
+define('TIMERS_ED_MIN', 9049);
 
 ?>
