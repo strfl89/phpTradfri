@@ -29,5 +29,6 @@ define('GATEWAY_GOOGLE_STATUS', 9105);
 define('GATEWAY_TIME_UNIX', 9059);
 define('GATEWAY_SETUP_TIME', 9069);
 define('LAST_SEEN', 9020);
+define('TIMERS', 15010);
 
 ?>
